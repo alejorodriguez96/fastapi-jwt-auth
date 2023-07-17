@@ -1,6 +1,6 @@
 import pytest, jwt
 from fastapi_jwt_auth import AuthJWT
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings
 from datetime import timedelta, datetime, timezone
 
 def test_create_access_token(Authorize):
@@ -22,8 +22,8 @@ def test_create_access_token(Authorize):
     with pytest.raises(TypeError,match=r"fresh"):
         Authorize.create_access_token(subject="test",fresh="lol")
 
-    with pytest.raises(ValueError,match=r"dictionary update sequence element"):
-        Authorize.create_access_token(subject=1,headers="test")
+    with pytest.raises(TypeError,match=r"user_claims"):
+        Authorize.create_access_token(subject=1, user_claims="test")
 
 def test_create_refresh_token(Authorize):
     with pytest.raises(TypeError,match=r"missing 1 required positional argument"):
@@ -32,8 +32,8 @@ def test_create_refresh_token(Authorize):
     with pytest.raises(TypeError,match=r"subject"):
         Authorize.create_refresh_token(subject=0.123)
 
-    with pytest.raises(ValueError,match=r"dictionary update sequence element"):
-        Authorize.create_refresh_token(subject=1,headers="test")
+    with pytest.raises(TypeError,match=r"user_claims"):
+        Authorize.create_refresh_token(subject=1, user_claims="test")
 
 def test_create_dynamic_access_token_expires(Authorize):
     expires_time = int(datetime.now(timezone.utc).timestamp()) + 90

@@ -4,7 +4,7 @@ from fastapi_jwt_auth.exceptions import AuthJWTException
 from fastapi import FastAPI, Depends, Request
 from fastapi.responses import JSONResponse
 from fastapi.testclient import TestClient
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings
 
 @pytest.fixture(scope='function')
 def client():
@@ -51,7 +51,7 @@ def default_access_token():
 
 @pytest.fixture(scope='function')
 def encoded_token(default_access_token):
-    return jwt.encode(default_access_token,'secret-key',algorithm='HS256').decode('utf-8')
+    return jwt.encode(default_access_token,'secret-key',algorithm='HS256')
 
 def test_verified_token(client,encoded_token,Authorize):
     class SettingsOne(BaseSettings):
@@ -67,7 +67,7 @@ def test_verified_token(client,encoded_token,Authorize):
     assert response.status_code == 422
     assert response.json() == {'detail': 'Not enough segments'}
     # InvalidSignatureError
-    token = jwt.encode({'some': 'payload'}, 'secret', algorithm='HS256').decode('utf-8')
+    token = jwt.encode({'some': 'payload'}, 'secret', algorithm='HS256')
     response = client.get('/protected',headers={"Authorization":f"Bearer {token}"})
     assert response.status_code == 422
     assert response.json() == {'detail': 'Signature verification failed'}
@@ -78,7 +78,7 @@ def test_verified_token(client,encoded_token,Authorize):
     assert response.status_code == 422
     assert response.json() == {'detail': 'Signature has expired'}
     # InvalidAlgorithmError
-    token = jwt.encode({'some': 'payload'}, 'secret', algorithm='HS384').decode('utf-8')
+    token = jwt.encode({'some': 'payload'}, 'secret', algorithm='HS384')
     response = client.get('/protected',headers={"Authorization":f"Bearer {token}"})
     assert response.status_code == 422
     assert response.json() == {'detail': 'The specified alg value is not allowed'}
@@ -177,7 +177,7 @@ def test_invalid_aud_and_missing_aud(client,Authorize,token_aud):
     access_token = Authorize.create_access_token(subject=1,audience=token_aud)
     response = client.get('/protected',headers={'Authorization': f"Bearer {access_token}"})
     assert response.status_code == 422
-    assert response.json() == {'detail':'Invalid audience'}
+    assert response.json() == {'detail':"Audience doesn't match"}
 
     refresh_token = Authorize.create_refresh_token(subject=1)
     response = client.get('/refresh_token',headers={'Authorization':f"Bearer {refresh_token}"})
