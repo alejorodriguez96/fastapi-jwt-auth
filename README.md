@@ -1,5 +1,5 @@
 <h1 align="left" style="margin-bottom: 20px; font-weight: 500; font-size: 50px; color: black;">
-  FastAPI JWT Auth
+  FastAPI JWT Auth 2
 </h1>
 
 ![Tests](https://github.com/alejorodriguez96/fastapi-jwt-auth/workflows/Tests/badge.svg)
@@ -9,9 +9,11 @@
 
 ---
 
-**Documentation**: <a href="https://indominusbyte.github.io/fastapi-jwt-auth" target="_blank">https://indominusbyte.github.io/fastapi-jwt-auth</a>
+Proyect forked from [IndominusByte](https://github.com/IndominusByte)'s [fastapi-jwt-auth](https://github.com/IndominusByte/fastapi-jwt-auth). Since it seems to be no longer maintained (last commit was on Nov 11, 2020) I decide to fork the repo and add support for `pydantic==2.X`. If this isn't the appropiate way to fix the dependencies problem, please contact me so I can do it in the proper way. Thanks!
 
-**Source Code**: <a href="https://github.com/IndominusByte/fastapi-jwt-auth" target="_blank">https://github.com/IndominusByte/fastapi-jwt-auth</a>
+**Documentation**: <a href="https://alejorodriguez96.github.io/fastapi-jwt-auth" target="_blank">https://alejorodriguez96.github.io/fastapi-jwt-auth</a>
+
+**Source Code**: <a href="https://github.com/alejorodriguez96/fastapi-jwt-auth" target="_blank">https://github.com/alejorodriguez96/fastapi-jwt-auth</a>
 
 ---
 
