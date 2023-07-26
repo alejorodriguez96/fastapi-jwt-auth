@@ -1,3 +1,6 @@
+[project]
+name = "fastapi_jwt_auth2"
+
 [build-system]
 requires = ["flit_core>=2,<4"]
 build-backend = "flit_core.buildapi"

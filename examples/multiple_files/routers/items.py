@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from fastapi_jwt_auth import AuthJWT
+from fastapi_jwt_auth2 import AuthJWT
 
 router = APIRouter()
 
