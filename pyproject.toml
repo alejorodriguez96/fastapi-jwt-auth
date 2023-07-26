@@ -3,8 +3,8 @@ requires = ["flit_core>=2,<4"]
 build-backend = "flit_core.buildapi"
 
 [tool.flit.metadata]
-module = "fastapi_jwt_auth"
-dist-name = "fastapi-jwt-auth"
+module = "fastapi_jwt_auth2"
+dist-name = "fastapi-jwt-auth2"
 author = "Nyoman Pradipta Dewantara"
 author-email = "nyomanpradipta120@gmail.com"
 home-page = "https://github.com/IndominusByte/fastapi-jwt-auth"
@@ -24,6 +24,7 @@ classifiers = [
 
 requires = [
   "fastapi>=0.61.0",
+  "pydantic>=2.0.0",
   "PyJWT>=1.7.1,<2.0.0"
 ]
 
